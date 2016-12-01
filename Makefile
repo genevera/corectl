@@ -21,8 +21,8 @@ VERSION := $(shell git describe --abbrev=6 --dirty=+untagged --always --tags)
 BUILDDATE = $(shell /bin/date "+%FT%T%Z")
 
 OPAMROOT ?= ~/.opam
-HYPERKIT_GIT = "https://github.com/moby/hyperkit.git"
-HYPERKIT_COMMIT = "v0.20180123"
+HYPERKIT_GIT = "https://github.com/docker/hyperkit.git"
+HYPERKIT_COMMIT = 6ffa03337e9353d126a85401fb6ada1ad5d62dbe
 
 MKDIR = /bin/mkdir -p
 CP = /bin/cp
