@@ -62,14 +62,11 @@ dtrace:::BEGIN
         reasons[32] = "WRMSR";
         reasons[33] = "INVAL_VMCS";
         reasons[34] = "INVAL_MSR";
-        /* 35 not documented */
         reasons[36] = "MWAIT";
         reasons[37] = "MTF";
-        /* 38 not documented */
         reasons[39] = "MONITOR";
         reasons[40] = "PAUSE";
         reasons[41] = "MCE_DURING_ENTRY";
-        /* 42 not documented */
         reasons[43] = "TPR";
         reasons[44] = "APIC_ACCESS";
         reasons[45] = "VIRTUALIZED_EOI";
@@ -86,43 +83,13 @@ dtrace:::BEGIN
         reasons[56] = "APIC_WRITE";
 
         printf("Tracing... Hit Ctrl-C to end.\n");
-
-        #ifdef INTERVAL
-        secs = INTERVAL;
-        printf("\n\n");
-        printf("Per CPU VM Exits\n");
-        #endif
-}
-
-corectld.runner$target:::vmx-exit
-{
-        #ifdef INTERVAL
-        /* Per vCPU count for periodic reporting */
-        @total[arg0] = count();
-        #endif
-
-        /* Per Reason per vCPU counts for summary */
-        #ifdef NUMERIC
-        @num[arg1, arg0] = count();
-        #else
-        @num[reasons[arg1], arg0] = count();
-        #endif
-}
-
-#ifdef INTERVAL
-/* timer */
-profile:::tick-1sec
-{
-       secs--;
 }
 
 /* Periodically print per vCPU VM Exits */
 profile:::tick-1sec
 /secs == 0/
 {
-        printa(@total);
-        clear(@total);
-        secs = INTERVAL;
+        @num[reasons[arg1], arg0] = count();
 }
 #endif
 
@@ -134,9 +101,5 @@ dtrace:::END
         printf("%16s %-4s %8s\n", "REASON", "vCPU", "RATE (1/s)");
         normalize(@num, (timestamp - start) / 1000000000);
         #endif
-        #ifdef NUMERIC
-        printa("              %2d %-4d %@8d\n", @num);
-        #else
         printa("%16s %-4d %@8d\n", @num);
-        #endif
 }
