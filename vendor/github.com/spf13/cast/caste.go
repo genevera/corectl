@@ -25,19 +25,17 @@ func ToTimeE(i interface{}) (tim time.Time, err error) {
 	case time.Time:
 		return v, nil
 	case string:
-		return StringToDate(v)
+		d, e := StringToDate(v)
+		if e == nil {
+			return d, nil
+		}
+		return time.Time{}, fmt.Errorf("Could not parse Date/Time format: %v\n", e)
 	case int:
+		return time.Unix(int64(v), 0), nil
+	case int32:
 		return time.Unix(int64(v), 0), nil
 	case int64:
 		return time.Unix(v, 0), nil
-	case int32:
-		return time.Unix(int64(v), 0), nil
-	case uint:
-		return time.Unix(int64(v), 0), nil
-	case uint64:
-		return time.Unix(int64(v), 0), nil
-	case uint32:
-		return time.Unix(int64(v), 0), nil
 	default:
 		return time.Time{}, fmt.Errorf("unable to cast %#v of type %T to Time", i, i)
 	}

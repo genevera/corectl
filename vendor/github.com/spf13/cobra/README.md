@@ -151,10 +151,10 @@ In a Cobra app, typically the main.go file is very bare. It serves one purpose: 
 package main
 
 import (
-  "fmt"
-  "os"
+	"fmt"
+	"os"
 
-  "{pathToYourApp}/cmd"
+	"{pathToYourApp}/cmd"
 )
 
 func main() {
@@ -356,10 +356,10 @@ In a Cobra app, typically the main.go file is very bare. It serves, one purpose,
 package main
 
 import (
-  "fmt"
-  "os"
+	"fmt"
+	"os"
 
-  "{pathToYourApp}/cmd"
+	"{pathToYourApp}/cmd"
 )
 
 func main() {
@@ -382,8 +382,8 @@ populate it with the following:
 package cmd
 
 import (
-  "github.com/spf13/cobra"
-  "fmt"
+	"github.com/spf13/cobra"
+	"fmt"
 )
 
 func init() {

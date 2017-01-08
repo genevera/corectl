@@ -132,7 +132,7 @@ func (m *MemMapFs) Mkdir(name string, perm os.FileMode) error {
 	_, ok := m.getData()[name]
 	m.mu.RUnlock()
 	if ok {
-		return &os.PathError{Op: "mkdir", Path: name, Err: ErrFileExists}
+		return &os.PathError{"mkdir", name, ErrFileExists}
 	}
 
 	m.mu.Lock()
