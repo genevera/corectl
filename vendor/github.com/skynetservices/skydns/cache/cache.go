@@ -59,7 +59,7 @@ func (c *Cache) EvictRandom() {
 		return
 	}
 	i := c.capacity - clen
-	for k, _ := range c.m {
+	for k := range c.m {
 		delete(c.m, k)
 		i--
 		if i == 0 {

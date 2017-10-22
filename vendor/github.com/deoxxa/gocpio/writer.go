@@ -1,8 +1,8 @@
 package cpio
 
 import (
-	"io"
 	"fmt"
+	"io"
 )
 
 // A writer enables sequential writing of cpio archives.

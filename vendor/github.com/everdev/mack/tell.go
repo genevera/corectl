@@ -1,7 +1,7 @@
 /*
 ** Tell
 ** Tells an application commands.
-*/
+ */
 
 package mack
 
