@@ -115,7 +115,7 @@ func (c *SSHclient) SCoPy(source, destination, target string) (err error) {
 	return
 }
 
-func StartSSHsession(ip string, privateKey string) (c *SSHclient, err error) {
+func StartSSHsession(ip string, privateKey string, port int) (c *SSHclient, err error) {
 	var secret ssh.Signer
 	c = &SSHclient{}
 
@@ -130,8 +130,8 @@ func StartSSHsession(ip string, privateKey string) (c *SSHclient, err error) {
 		},
 	}
 
-	if c.conn, err = ssh.Dial("tcp", ip+":22", config); err != nil {
-		return c, fmt.Errorf("%s unreachable", ip+":22")
+	if c.conn, err = ssh.Dial("tcp", fmt.Sprintf("%s:%v", ip, port), config); err != nil {
+		return c, fmt.Errorf("%s:%d unreachable", ip, port)
 	}
 
 	if c.session, err = c.conn.NewSession(); err != nil {

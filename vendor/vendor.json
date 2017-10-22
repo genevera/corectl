@@ -3,6 +3,61 @@
 	"ignore": "test",
 	"package": [
 		{
+			"path": "github.com/TheNewNormal/corectl/cmd",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/common/assets",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/host/darwin/misc/image",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/host/darwin/misc/uuid2ip",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/host/session",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/server",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/server/connector",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/components/target/coreos",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/hyperkit/go",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/hyperkit/go/sample",
+			"revision": "",
+			"tree": true
+		},
+		{
+			"path": "github.com/TheNewNormal/corectl/release",
+			"revision": "",
+			"tree": true
+		},
+		{
 			"checksumSHA1": "fCc3grA7vIxfBru7R3SqjcW+oLI=",
 			"origin": "github.com/coreos/fuze/config/vendor/github.com/alecthomas/units",
 			"path": "github.com/alecthomas/units",

@@ -62,8 +62,10 @@ var (
 
 func sshCommand(cmd *cobra.Command, args []string) (err error) {
 	var (
+		cli        = session.Caller.CmdLine
 		sshSession = &connector.SSHclient{}
 		vm         *server.VMInfo
+		port       = cli.GetInt("port")
 	)
 
 	if vm, err = vmInfo(args[0]); err != nil {
@@ -71,7 +73,7 @@ func sshCommand(cmd *cobra.Command, args []string) (err error) {
 	}
 
 	sshSession, err =
-		connector.StartSSHsession(vm.PublicIP, vm.InternalSSHprivate)
+		connector.StartSSHsession(vm.PublicIP, vm.InternalSSHprivate, port)
 	if err != nil {
 		return
 	}
@@ -105,14 +107,16 @@ func vmInfo(id string) (vm *server.VMInfo, err error) {
 
 func scpCommand(cmd *cobra.Command, args []string) (err error) {
 	var (
+		cli                         = session.Caller.CmdLine
 		session, vm                 = &connector.SSHclient{}, &server.VMInfo{}
+		port                        = cli.GetInt("port")
 		split                       = strings.Split(args[1], ":")
 		source, destination, target = args[0], split[1], split[0]
 	)
 	if vm, err = vmInfo(target); err != nil {
 		return
 	}
-	if session, err = connector.StartSSHsession(vm.PublicIP, vm.InternalSSHprivate); err != nil {
+	if session, err = connector.StartSSHsession(vm.PublicIP, vm.InternalSSHprivate, port); err != nil {
 		return
 	}
 	defer session.Close()
@@ -120,6 +124,9 @@ func scpCommand(cmd *cobra.Command, args []string) (err error) {
 }
 
 func init() {
+	sshCmd.Flags().StringP("port", "p", "22", "port to use for connecting to sshd on the VM")
+	scpCmd.Flags().StringP("port", "p", "22", "port to use for connecting to sshd on the VM")
+
 	if session.AppName() != "corectld" {
 		rootCmd.AddCommand(sshCmd, scpCmd)
 	}

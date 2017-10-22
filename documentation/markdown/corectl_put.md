@@ -21,7 +21,8 @@ corectl put path/to/file VMid:/file/path/on/destination [flags]
 ### Options
 
 ```
-  -h, --help   help for put
+  -h, --help          help for put
+  -p, --port string   port to use for connecting to sshd on the VM (default "22")
 ```
 
 ### Options inherited from parent commands

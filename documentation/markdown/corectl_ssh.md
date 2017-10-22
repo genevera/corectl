@@ -21,7 +21,8 @@ corectl ssh VMid ["command1;..."] [flags]
 ### Options
 
 ```
-  -h, --help   help for ssh
+  -h, --help          help for ssh
+  -p, --port string   port to use for connecting to sshd on the VM (default "22")
 ```
 
 ### Options inherited from parent commands
