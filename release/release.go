@@ -26,7 +26,7 @@ import (
 
 var (
 	// Version of running blob
-	// -ldflags "-X github.com/TheNewNormal/corectl/release/Version=
+	// -ldflags "-X github.com/genevera/corectl/release/Version=
 	//            `git describe --abbrev=6 --dirty=-unreleased --always --tags`"
 	Version string
 	// BuildDate of running blob
@@ -35,7 +35,7 @@ var (
 	ShortBanner = "CoreOS over macOS made simple."
 	// Banner ...
 	Banner = fmt.Sprintf("%s <%s>\n%s\n", ShortBanner,
-		"http://github.com/TheNewNormal/corectl",
+		"http://github.com/genevera/corectl",
 		"Copyright (c) 2015-2016, António Meireles")
 	// Info ...
 )
